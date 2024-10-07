@@ -31,6 +31,7 @@
                 "input": "public"
               }
             ],
+
             "styles": [
               "src/styles.scss"
             ],
@@ -98,5 +99,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "03575e2f-b12b-45d9-8554-f25abc0d99c1"
   }
 }
