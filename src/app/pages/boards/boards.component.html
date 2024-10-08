@@ -1,92 +1,39 @@
-<app-navbar></app-navbar>
-<div class="container mx-auto flex mt-10">
-  <div class="w-1/5 mr-4">
-    <ul class="flex flex-col font-medium text-gray-700 mb-10">
-      <li>
-        <a class="block bg-sky-100 rounded py-1 px-3 text-sky-700"
-          ><fa-icon [icon]="faTrello"></fa-icon> Boards</a
-        >
-      </li>
-      <li>
-        <a class="block py-1 px-3"
-          ><fa-icon [icon]="faBox"></fa-icon> Templates</a
-        >
-      </li>
-      <li>
-        <a class="block py-1 px-3"
-          ><fa-icon [icon]="faWaveSquare"></fa-icon> Home</a
-        >
-      </li>
-    </ul>
+<div class="flex flex-col h-screen">
+  <app-navbar></app-navbar>
+  <div class="w-full grow bg-sky-600 px-4 pb-4">
+    <div class="flex flex-col h-full">
+      <div>
+        <h2 class="text-xl font-bold text-white my-4">Demo Board</h2>
+      </div>
+      <div
+        class="flex grow items-start w-full h-full overflow-x-scroll"
+        cdkDropListGroup
+      >
+        @for (column of columns; track $index) {
+        <div class="rounded bg-gray-200 w-72 p-2 mr-3 shrink-0">
+          <div class="flex justify-between py-1">
+            <h3 class="text-sm font-bold ml-2">{{ column.title }}</h3>
+          </div>
 
-    <cdk-accordion>
-      <cdk-accordion-item #accordionMenu="cdkAccordionItem">
-        <button
-          class="w-full py-1 px-2 flex justify-between items-center"
-          type="button"
-          (click)="accordionMenu.toggle()"
-        >
-          My workspace
-          <fa-icon
-            [icon]="accordionMenu.expanded ? faAngleUp : faAngleDown"
-          ></fa-icon>
-        </button>
-        <div [style.display]="accordionMenu.expanded ? '' : 'none'">
-          <ul class="ml-2 flex flex-col text-sm text-gray-700">
-            <li>
-              <a class="block py-1 px-3"
-                ><fa-icon [icon]="faTrello"></fa-icon> Boards</a
-              >
-            </li>
-            <li>
-              <a class="block py-1 px-3"
-                ><fa-icon [icon]="faHeart"></fa-icon> Highlights</a
-              >
-            </li>
-            <li>
-              <a class="block py-1 px-3"
-                ><fa-icon [icon]="faBorderAll"></fa-icon> Views</a
-              >
-            </li>
-            <li>
-              <a class="block py-1 px-3"
-                ><fa-icon [icon]="faUsers"></fa-icon> Members</a
-              >
-            </li>
-            <li>
-              <a class="block py-1 px-3"
-                ><fa-icon [icon]="faGear"></fa-icon> Settings</a
-              >
-            </li>
-          </ul>
+          <div
+            class="text-sm mt-2 min-h-[2.5rem]"
+            cdkDropList
+            (cdkDropListDropped)="drop($event)"
+            [cdkDropListData]="column.todos"
+          >
+            @for (todo of column.todos; track $index) {
+            <div
+              cdkDrag
+              class="bg-white shadow p-2 rounded mt-2 border-b border-x-gray-300 cursor-pointer hover:bg-gray-400"
+            >
+              {{ todo.title }}
+            </div>
+            }
+          </div>
         </div>
-      </cdk-accordion-item>
-    </cdk-accordion>
-  </div>
-  <div class="w-full">
-    <h1 class="text-lg font-bold mb-4">
-      <fa-icon [icon]="faClock"></fa-icon> Recently viewed
-    </h1>
-    <div class="grid grid-cols-4 gap-4">
-      <div
-        class="w-full bg-sky-700 px-4 py-2 rounded text-white font-bold h-24"
-      >
-        Board 1
-      </div>
-      <div
-        class="w-full bg-green-700 px-4 py-2 rounded text-white font-bold h-24"
-      >
-        Board 1
-      </div>
-      <div
-        class="w-full bg-amber-700 px-4 py-2 rounded text-white font-bold h-24"
-      >
-        Board 1
-      </div>
-      <div
-        class="w-full bg-indigo-700 px-4 py-2 rounded text-white font-bold h-24"
-      >
-        Board 1
+        }
+
+        <button class="shrink-0" (click)="addColumn()">Add Column</button>
       </div>
     </div>
   </div>
