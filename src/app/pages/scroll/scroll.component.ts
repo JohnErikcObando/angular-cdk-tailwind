@@ -3,21 +3,7 @@ import { Component, inject } from '@angular/core';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { HttpClient } from '@angular/common/http';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-
-export interface Product {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: Category;
-  images: string[];
-}
-
-export interface Category {
-  id: number;
-  name: string;
-  image: string;
-}
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-scroll',
