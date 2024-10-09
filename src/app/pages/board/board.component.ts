@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
@@ -17,6 +17,8 @@ import {
   faGear,
 } from '@fortawesome/free-solid-svg-icons';
 import { faTrello } from '@fortawesome/free-brands-svg-icons';
+
+import { DialogModule } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-board',
